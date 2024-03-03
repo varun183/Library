@@ -4,8 +4,7 @@ export const Part = ({ part, exercises }) => {
   return (
     <div>
       <p>
-        {part}
-        {exercises}
+        {part} {exercises}
       </p>
     </div>
   );

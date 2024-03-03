@@ -1,0 +1,8 @@
+.feedButton {
+  display: flex;
+  flex-direction: row;
+}
+
+.text-right {
+  text-align: right;
+}
