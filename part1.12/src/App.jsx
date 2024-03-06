@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Button from "./component/Button";
 import "./App.css";
+import Header from "./component/Header";
+import { findMaxVote } from "./helpers";
 
 const App = () => {
   const anecdotes = [
@@ -29,14 +31,19 @@ const App = () => {
     setVotes(newVotes);
   };
 
+  const maxVotedAnecdote = findMaxVote(votes);
+
   return (
     <div>
+      <Header title="Anecdote of the day" />
       {anecdotes[selected]}
       <div>has {votes[selected]} votes</div>
       <div className="btn">
         <Button handleClick={voteForAnecdote} name="vote" />
         <Button handleClick={setToSelected} name="next anecdote" />
       </div>
+      <Header title="Anecdote with most votes" />
+      {anecdotes[maxVotedAnecdote]}
     </div>
   );
 };
