@@ -1,10 +1,10 @@
 import React from "react";
 
-export const Part = ({ part, exercises }) => {
+export const Part = ({ content }) => {
   return (
     <div>
       <p>
-        {part} {exercises}
+        {content.name} {content.exercises}
       </p>
     </div>
   );
