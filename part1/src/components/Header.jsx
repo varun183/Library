@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Header = ({ courses }) => {
+export const Header = ({ title }) => {
   return (
     <div>
-      <h1>{courses}</h1>
+      <h1>{title}</h1>
     </div>
   );
 };
