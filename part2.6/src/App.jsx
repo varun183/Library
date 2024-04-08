@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Person } from "./Component/Person";
+import { Persons } from "./Component/Persons";
+import { PersonForm } from "./Component/PersonForm";
+import { Filter } from "./Component/Filter";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -54,30 +56,17 @@ const App = () => {
     <div>
       <h1>Phonebook</h1>
       <div>
-        filter shown with <input value={filterQuery} onChange={applyFilter} />
+        <Filter applyFilter={applyFilter} filterQuery={filterQuery} />
       </div>
-      <form onSubmit={addNewPerson}>
-        <h2>Add a new</h2>
-        <div>
-          name: <input value={newName} onChange={addNewName} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={addNewNumber} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm
+        newName={newName}
+        newNumber={newNumber}
+        addNewName={addNewName}
+        addNewNumber={addNewNumber}
+        addNewPerson={addNewPerson}
+      />
       <h2>Numbers</h2>
-      {personsToShow.length > 0
-        ? personsToShow.map((person) => (
-            <Person
-              key={person.name}
-              name={person.name}
-              number={person.number}
-            />
-          ))
-        : "No matching persons found"}
+      <Persons personsToShow={personsToShow} />
     </div>
   );
 };
