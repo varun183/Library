@@ -5,6 +5,7 @@ const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
+  const [filterQuery, setFilterQuery] = useState("");
 
   const addNewName = (event) => {
     event.preventDefault();
@@ -40,10 +41,23 @@ const App = () => {
     }
   };
 
+  const applyFilter = (event) => {
+    event.preventDefault();
+    setFilterQuery(event.target.value);
+  };
+
+  const personsToShow = persons.filter((person) =>
+    person.name.toLowerCase().includes(filterQuery.toLowerCase())
+  );
+
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h1>Phonebook</h1>
+      <div>
+        filter shown with <input value={filterQuery} onChange={applyFilter} />
+      </div>
       <form onSubmit={addNewPerson}>
+        <h2>Add a new</h2>
         <div>
           name: <input value={newName} onChange={addNewName} />
         </div>
@@ -55,15 +69,15 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.length > 0
-        ? persons.map((person) => (
+      {personsToShow.length > 0
+        ? personsToShow.map((person) => (
             <Person
               key={person.name}
               name={person.name}
               number={person.number}
             />
           ))
-        : "..."}
+        : "No matching persons found"}
     </div>
   );
 };
